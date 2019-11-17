@@ -151,7 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MemoryViewer.cpp" />
     <ClCompile Include="Optimisations.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MemoryViewer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
