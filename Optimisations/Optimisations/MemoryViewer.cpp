@@ -20,14 +20,41 @@ void MemoryViewer::Initialize()
 	EndLine();
 }
 
+// Main execution for this Viewer. Will ask questions and respond accordingly.
 void MemoryViewer::Run()
 {
+	DisplayMemory();
+
+	std::cout << std::endl << "Would you like to display the next " << _amountOfRows << " rows? (y/n)" << std::endl;
+
+	char answer;
+	std::cin >> answer;
+
+	if (answer == 'y')
+		return Run(); // return as we don't want to execute below code multiple times (otherwise it gets executed each time 'Run()' is executed).
+	else if (answer != 'n')
+		std::cout << "I did not quite understand that answer... I will asume you did not want those extra rows.";
+
+	std::cout << std::endl << "Would you like to re-configure the settings of this Viewer? (y/n where n will return to the main menu)" << std::endl;
+	std::cin >> answer;
+	std::cout << std::endl;
+
+	if (answer == 'y')
+		return Restart(); // return as we don't want to execute below code multiple times (otherwise it gets executed each time 'Run()' is executed).
+	else if (answer != 'n')
+		std::cout << "I did not quite understand that answer... I will assume you wanted to exit the program.";
+
+	std::cout << std::endl;
+
+	return;
 }
 
+// Wrapper for Initialize() and Run() in that order.
 void MemoryViewer::Restart()
 {
+	Initialize();
+	Run();
 }
-
 
 // Ask a question and set the step size with which we will work.
 void MemoryViewer::SetStepSize()
