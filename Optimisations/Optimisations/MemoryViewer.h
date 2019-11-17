@@ -34,6 +34,9 @@ private:
 	void PrintPointerValueAsChar(unsigned int* pointer) const;
 
 	int Filter(unsigned int code, struct _EXCEPTION_POINTERS* exceptionPointer) const;
+
+	// Wrapper for a new line.
+	void EndLine() { std::cout << std::endl; };
 };
 
 #endif
