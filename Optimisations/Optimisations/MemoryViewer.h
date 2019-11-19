@@ -29,9 +29,9 @@ private:
 
 	void DisplayMemory();
 
-	void Outline(unsigned int* pointer) const;
-	void PrintPointerValue(unsigned int* pointer) const;
-	void PrintPointerValueAsChar(unsigned int* pointer) const;
+	void Outline(unsigned char* pointer) const;
+	void PrintPointerValue(unsigned char* pointer) const;
+	void PrintPointerValueAsChar(unsigned char* pointer) const;
 
 	int Filter(unsigned int code, struct _EXCEPTION_POINTERS* exceptionPointer) const;
 

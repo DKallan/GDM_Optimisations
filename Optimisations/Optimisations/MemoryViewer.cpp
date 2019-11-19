@@ -104,17 +104,50 @@ void MemoryViewer::SetMemoryLocation()
 
 void MemoryViewer::DisplayMemory()
 {
+	unsigned char a = 'a';
+	unsigned char* charPtr = std::addressof(a);
+
+	for (size_t i = 0; i < _amountOfRows; i++)
+	{
+		std::cout << "0x" << (void*)charPtr << " ";
+		
+		for (size_t j = 0; j < _stepSize; j++)
+		{
+			__try
+			{
+				PrintPointerValue(charPtr + j);
+			}
+			__except (Filter(GetExceptionCode(), GetExceptionInformation()))
+			{
+				Outline(nullptr);
+			}
+		}
+
+		// Increment the pointer by the step size we took.
+		charPtr += _stepSize;
+
+		EndLine();
+	}
 }
 
-void MemoryViewer::Outline(unsigned int* pointer) const
+void MemoryViewer::Outline(unsigned char* pointer) const
 {
+	if (!pointer)
+	{
+		std::cout << std::setw(2) << std::setfill('?') << " ";
+	}
+	else
+	{
+		std::cout << std::setfill('0') << std::setw(2) << std::hex << (0xff & (unsigned int)*pointer) << " ";
+	}
 }
 
-void MemoryViewer::PrintPointerValue(unsigned int* pointer) const
+void MemoryViewer::PrintPointerValue(unsigned char* pointer) const
 {
+	Outline(pointer);
 }
 
-void MemoryViewer::PrintPointerValueAsChar(unsigned int* pointer) const
+void MemoryViewer::PrintPointerValueAsChar(unsigned char* pointer) const
 {
 }
 
